@@ -83,5 +83,10 @@ public class BlueprintsServices {
         persistence.updateBlueprint(author, name, updated);
     }
 
+    /** Borra un plano existente */
+    public void deleteBlueprint(String author, String name) throws BlueprintNotFoundException {
+        persistence.deleteBlueprint(author, name);
+    }
+
     
 }

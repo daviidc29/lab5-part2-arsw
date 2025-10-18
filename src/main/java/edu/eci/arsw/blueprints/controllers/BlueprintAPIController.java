@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -117,6 +118,17 @@ public class BlueprintAPIController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("No se pudo actualizar el blueprint");
+        }
+    }
+    
+    @DeleteMapping("/{author}/{bpname}")
+    public ResponseEntity<?> deleteBlueprint(@PathVariable String author, @PathVariable String bpname) {
+        try {
+            services.deleteBlueprint(author, bpname);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 No Content es una respuesta estándar para DELETE exitoso
+        } catch (Exception e) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }

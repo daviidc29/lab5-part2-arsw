@@ -36,6 +36,24 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
         Point[] pts4 = new Point[]{new Point(0, 0), new Point(5, 5), new Point(10, 10)};
         Blueprint bp4 = new Blueprint("Juan", "office", pts4);
         blueprints.put(new Tuple<>(bp4.getAuthor(), bp4.getName()), bp4);
+        
+        Point[] ptsJohnConnorHouse = new Point[]{new Point(150, 250), new Point(250, 250), new Point(250, 150), new Point(200, 100), new Point(150, 150), new Point(150, 250)};
+        Blueprint bpJohnConnorHouse = new Blueprint("johnconnor", "house", ptsJohnConnorHouse);
+        blueprints.put(new Tuple<>(bpJohnConnorHouse.getAuthor(), bpJohnConnorHouse.getName()), bpJohnConnorHouse);
+
+        Point[] ptsJohnConnorGear = new Point[]{new Point(300,200),new Point(310,190),new Point(320,200),new Point(340,200),new Point(350,190),new Point(360,200),new Point(380,220),new Point(390,230),new Point(380,240),new Point(380,260),new Point(390,270),new Point(380,280),new Point(360,300),new Point(350,310),new Point(340,300),new Point(320,300),new Point(310,310),new Point(300,300),new Point(280,280),new Point(270,270),new Point(280,260),new Point(280,240),new Point(270,230),new Point(280,220),new Point(300,200)};
+        Blueprint bpJohnConnorGear = new Blueprint("johnconnor", "gear", ptsJohnConnorGear);
+        blueprints.put(new Tuple<>(bpJohnConnorGear.getAuthor(), bpJohnConnorGear.getName()), bpJohnConnorGear);
+
+
+        
+        Point[] ptsMaryHouse = new Point[]{new Point(100, 200), new Point(200, 200), new Point(200, 100), new Point(150, 70), new Point(100, 100), new Point(100, 200)};
+        Blueprint bpMaryHouse = new Blueprint("maryweyland", "house2", ptsMaryHouse);
+        blueprints.put(new Tuple<>(bpMaryHouse.getAuthor(), bpMaryHouse.getName()), bpMaryHouse);
+
+        Point[] ptsMaryLabyrinth = new Point[]{new Point(60,60),new Point(220,60),new Point(220,260),new Point(60,260),new Point(60,60),new Point(80,80),new Point(80,240),new Point(200,240),new Point(200,80),new Point(80,80),new Point(100,100),new Point(180,100),new Point(180,220),new Point(100,220),new Point(100,100),new Point(120,120),new Point(120,200),new Point(160,200),new Point(160,120),new Point(120,120)};
+        Blueprint bpMaryLabyrinth = new Blueprint("maryweyland", "labyrinth", ptsMaryLabyrinth);
+        blueprints.put(new Tuple<>(bpMaryLabyrinth.getAuthor(), bpMaryLabyrinth.getName()), bpMaryLabyrinth);
     }
 
 
@@ -94,5 +112,13 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
             arr[i] = new Point(p.getX(), p.getY());
         }
         return new Blueprint(src.getAuthor(), src.getName(), arr);
+    }
+    @Override
+    public void deleteBlueprint(String author, String name) throws BlueprintNotFoundException {
+        Tuple<String,String> key = new Tuple<>(author, name);
+        Blueprint removed = blueprints.remove(key);
+        if (removed == null) {
+            throw new BlueprintNotFoundException("Blueprint not found: " + author + "/" + name);
+        }
     }
 }

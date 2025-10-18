@@ -41,5 +41,9 @@ public interface BlueprintsPersistence {
      * @throws BlueprintNotFoundException if the blueprint does not exist
      */
     public void updateBlueprint(String author, String name, Blueprint bp) throws BlueprintNotFoundException;
-
+    /**
+     * Delete an existing blueprint identified by author and name.
+     * @throws BlueprintNotFoundException if the blueprint does not exist
+     */
+    public void deleteBlueprint(String author, String name) throws BlueprintNotFoundException;
 }
