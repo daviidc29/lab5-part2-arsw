@@ -110,15 +110,15 @@
 
 	Y añadimos la funcionalidad para eliminar el plano:
 
-	![alt text](image-1.png)
+	![alt text](img/img15.png)
 
 	Prueba borrando un plano:
 
-	![alt text](image.png)
+	![alt text](img/img16.png)
 
 	Donde nos sale la ventane emergente diciendonos que el plano fue borrado y vemos que efectivamente ya no esta
 
-	![alt text](image.png)
+	![alt text](img/img17.png)
 
 ### Criterios de evaluación
 
@@ -133,4 +133,7 @@
 
 
 ### Despliegue en:
-	
+
+http://lab5-part2-arsw-d3arara4ewf0gqds.canadacentral-01.azurewebsites.net/index.html
+
+

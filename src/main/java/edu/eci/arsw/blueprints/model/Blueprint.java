@@ -2,7 +2,6 @@
 package edu.eci.arsw.blueprints.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,11 +17,16 @@ public class Blueprint {
     public Blueprint(String author,String name,Point[] pnts){
         this.author=author;
         this.name=name;
-        points=Arrays.asList(pnts);
+        // create a mutable copy of the points array
+        points = new ArrayList<>();
+        if (pnts != null) {
+            java.util.Collections.addAll(points, pnts);
+        }
     }
          
     public Blueprint(String author, String name){
-        this.name=name;
+        this.author = author;
+        this.name = name;
         points=new ArrayList<>();
     }
 
@@ -53,6 +57,9 @@ public class Blueprint {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.author);
+        hash = 31 * hash + Objects.hashCode(this.name);
+        hash = 31 * hash + Objects.hashCode(this.points);
         return hash;
     }
 
@@ -74,16 +81,7 @@ public class Blueprint {
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (this.points.size()!=other.points.size()){
-            return false;
-        }
-        for (int i=0;i<this.points.size();i++){
-            if (this.points.get(i)!=other.points.get(i)){
-                return false;
-            }
-        }
-        
-        return true;
+        return Objects.equals(this.points, other.points);
     }
     
     

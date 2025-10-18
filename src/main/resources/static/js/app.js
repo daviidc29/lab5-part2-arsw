@@ -98,10 +98,10 @@ const app = (function () {
         ctx.lineWidth = 2;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-        pts.forEach((p, i) => {
-            if (i === 0) return;
+        for (const [i, p] of pts.entries()) {
+            if (i === 0) continue;
             drawSegment(ctx, pts[i - 1], p);
-        });
+        }
     }
     /** Agrega un punto al blueprint seleccionado y repinta */
     function addPointToSelected(pos, canvasId = "bpCanvas") {
@@ -153,7 +153,7 @@ const app = (function () {
         const canvas = document.getElementById(canvasId) || document.querySelector("canvas");
         if (!canvas) { console.warn(`[app] Canvas "${canvasId}" no encontrado.`); return; }
         detachCanvasHandlers(canvas);
-        if (window.PointerEvent) {
+        if (globalThis.PointerEvent) {
             canvas.addEventListener("pointerdown", handleCanvasPointerDown, { passive: false });
             canvas.addEventListener("pointermove", handleCanvasPointerMove, { passive: false });
             canvas.addEventListener("pointerup", handleCanvasPointerUp, { passive: false });
@@ -177,7 +177,7 @@ const app = (function () {
             ? (document.getElementById(canvasOrId) || document.querySelector("canvas"))
             : canvasOrId;
         if (!canvas) return;
-        if (window.PointerEvent) {
+        if (globalThis.PointerEvent) {
             canvas.removeEventListener("pointerdown", handleCanvasPointerDown);
             canvas.removeEventListener("pointermove", handleCanvasPointerMove);
             canvas.removeEventListener("pointerup", handleCanvasPointerUp);
