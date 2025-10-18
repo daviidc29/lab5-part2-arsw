@@ -136,4 +136,6 @@
 
 http://lab5-part2-arsw-d3arara4ewf0gqds.canadacentral-01.azurewebsites.net/index.html
 
+Ejemplo:
 
+![alt text](img/img18.png)
